@@ -82,16 +82,32 @@ const horoGen = horoSign => {
         default:
             return 'Please input valid starsign';
     };
+
     let orderChosen, actionChosen, subjectChosen; //defines variables for action
-    let orderWord = ['avoid', 'consider'];
-    let actionWord= ['cutting out', 'kissing', 'saying you love', 'snapchatting', 'selling'];
-    let subjectWord= ['someone you fancy', 'your partner (best friend if single)','a family member'];
-    if (sass+hustle < 10) {orderChosen = orderWord[0];}
-        else {orderChosen = orderWord[1]};
-    actionChosen = actionWord[Math.floor(Math.random()*actionWord.length)];
-    subjectChosen = subjectWord[Math.floor(Math.random()*subjectWord.length)];
-    return `Your energy ratings are sass:${sass}, hustle:${hustle}, intelligence:${intelligence}, energy:${energy}. Based on these results I would advise you ${orderChosen} ${actionChosen} ${subjectChosen}`; //output of function
+    let words = {
+        orderWord: ['avoid', 'consider'],
+        actionWord: ['cutting out', 'kissing', 'saying you love', 'snapchatting', 'selling'],
+        subjectWord: ['someone you fancy', 'your partner (best friend if single)','a family member']
+    };
+    if (sass+hustle < 10) {orderChosen = words.orderWord[0];}
+        else {orderChosen = words.orderWord[1]};
+    actionChosen = words.actionWord[Math.floor(Math.random()*words.actionWord.length)];
+    subjectChosen = words.subjectWord[Math.floor(Math.random()*words.subjectWord.length)];
+    let perfectPartner;
+    let partnerWords = {
+        names :['James', 'Sam', 'Ahmed', 'Dustin', 'Boil', 'Laura', 'Samantha', 'Anna'],
+        jobs :['Software Engineer', 'currently seeking employment', 'Nurse', 'Dentist'],
+        hometowns :['Amersham', 'London', 'Swansea', 'Cardiff']
+    }
+    let nameSelected= partnerWords.names[Math.floor(Math.random()*partnerWords.names.length)]; //randomly selects name
+    let jobSelected = partnerWords.jobs[Math.floor(Math.random()*partnerWords.jobs.length)]; //randomly selects job
+    let hometownSelected = partnerWords.hometowns[Math.floor(Math.random()*partnerWords.hometowns.length)]; //randomly selects hometown 
+    if (energy >= 8) {perfectPartner =  `their name is ${nameSelected}, occupation is a ${jobSelected} and they live in ${hometownSelected}`}// console.log(perfectPartner); test to make sure object selector is working
+        else {perfectPartner = 'low energy means no love today'};
+    return `Your energy ratings are - sass:${sass}, hustle:${hustle}, intelligence:${intelligence}, energy:${energy}. Based on these results I would advise you ${orderChosen} ${actionChosen} ${subjectChosen}. Your energy levels are used to find your perfect partner: ${perfectPartner}`; //output of function
 }
+
+
 
 
 
